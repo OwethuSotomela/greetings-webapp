@@ -1,0 +1,75 @@
+h1{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    align-items: center;
+    text-shadow:  2px 2px 5px aqua;
+}
+section{
+    height: 90vh;
+    border: 2px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    box-shadow: 0 20px 25px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+section{
+    background-image:url(../images/26.jpeg);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+button{
+    display: inline;
+    font-size: 15px;
+    border-radius: 12px;
+    background-color: white;
+    color: black;
+    border: 2px solid aqua; 
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.label-body{
+    font-size: 25px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-shadow:  2px 2px 5px aqua;
+}
+.out{
+    border: black 3px solid;
+    border-radius: 10px;
+}
+.fname{
+    width: 800px;
+    text-align: center;
+}
+.front{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.error{
+    display: flex;
+    flex-direction: row;
+}
+.countOne{
+    padding-left: 10px;
+}
+.error{
+    color: red;
+    font-weight: 500;
+    margin-bottom: 3%;
+}
+
+.error1{
+    color: green;
+    font-weight: 500;
+    margin-bottom: 3%;
+    
+}
+@media only screen and (min-width: 60em) { /* 960px */
+    .container {
+      width: 75%;
+      max-width: 61rem;
+    }
+}
