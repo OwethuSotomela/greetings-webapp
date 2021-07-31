@@ -23,21 +23,9 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.get('/', function (req, res) {
-    req.flash('info', 'Welcome');
-    res.render('index', {
-        title: 'Home'
-    })
-});
-
-// app.get('/addFlash', function (req, res) {
-//     req.flash('info', 'Flash Message Added');
-//     res.redirect('/');
-// });
-
 app.get('/the-route', function (req, res) {
     req.flash('info', 'Flash Message Added');
-    res.redirect('/', {feedback: greeting.getMessage()});
+    res.redirect('/', { noName: greeting.getMessage(messages.info) });
 });
 
 app.get('/', function (req, res) {
@@ -47,8 +35,17 @@ app.get('/', function (req, res) {
 app.post('/action', function (req, res) {
     let hello = req.body.itemType;
     let string = req.body.fname;
-    greeting.greetMessage(hello, string);
-    res.render('index', {greetMe: greeting.getGreet()});
+    if(hello == undefined && string == ""){
+        req.flash('info', 'Please enter a valid name and select a language!')
+    }
+    else if (hello == undefined) {
+        req.flash('info', 'Please select a language!');
+    }else if (string == "") {
+        req.flash('info', 'Please enter a valid name!')
+    } else {
+        greeting.greetMessage(hello, string)
+    };
+    res.render('index', { greetMe: greeting.getGreet() });
 })
 
 // app.get('/greeted', function (req, res) {

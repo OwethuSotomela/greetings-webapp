@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Greet-App</title>
     <link rel="stylesheet" href="./css/greet.css">
 </head>
 
@@ -20,10 +20,11 @@
             <div class="row">
                 <br>
                 <div class="six columns">
-                    {{!-- <div class="">rftgbhynjkml</div>
-                    <br> --}}
                     <h1>Greetings</h1>
-                    <div class="error">{{feedback}}</div>
+                     {{#if messages.info}}   
+                    <div class="error">{{messages.info}}</div>
+                    <div class="feedback">{{feedback}}</div>
+                    {{/if}}
                     <form action="/action" method="POST">
                         <div class="front">
                             <input type="text" placeholder="Enter your name" class="fname" name="fname">
