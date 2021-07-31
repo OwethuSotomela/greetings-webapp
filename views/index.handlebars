@@ -20,33 +20,31 @@
             <div class="row">
                 <br>
                 <div class="six columns">
-                    <div class=""></div>
-                    <br>
+                    {{!-- <div class="">rftgbhynjkml</div>
+                    <br> --}}
                     <h1>Greetings</h1>
-                    <div class="error"> </div>
-                    <div class="front">
-                <form action="/action" method="POST">
+                    <div class="error">{{feedback}}</div>
+                    <form action="/action" method="POST">
+                        <div class="front">
                             <input type="text" placeholder="Enter your name" class="fname" name="fname">
-                            <div class="countOne">809-</div>
-                    </div>
-                    <br>
-                    <label class="">
-                        <input type="radio" name="itemType" class="itemTypeRadio" value="isiZulu">
-                        <span class="label-body">Zulu</span>
-                    </label>
-                    <label class="">
-                        <input type="radio" name="itemType" class="itemTypeRadio" value="English">
-                        <span class="label-body">English</span>
-                    </label>
-                    <label class="">
-                        <input type="radio" name="itemType" class="itemTypeRadio" value="Portuguese">
-                        <span class="label-body">Portuguese</span>
-                    </label>
-
+                            <div class="countOne">{{startCount}}</div>
+                        </div>
+                        <br>
+                        <label class="">
+                            <input type="radio" name="itemType" class="itemTypeRadio" value="isiZulu">
+                            <span class="label-body">Zulu</span>
+                        </label>
+                        <label class="">
+                            <input type="radio" name="itemType" class="itemTypeRadio" value="English">
+                            <span class="label-body">English</span>
+                        </label>
+                        <label class="">
+                            <input type="radio" name="itemType" class="itemTypeRadio" value="Portuguese">
+                            <span class="label-body">Portuguese</span>
+                        </label>
                 </div>
                 <br>
                 <div class="buttons">
-
                     <button class="greetbtn" type="submit"><em>Greet Me!</em></button>
                     </form>
                     <form action="/reset" method="POST">

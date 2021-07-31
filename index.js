@@ -37,7 +37,7 @@ app.get('/', function (req, res) {
 
 app.get('/the-route', function (req, res) {
     req.flash('info', 'Flash Message Added');
-    res.redirect('/');
+    res.redirect('/', {feedback: greeting.getMessage()});
 });
 
 app.get('/', function (req, res) {
