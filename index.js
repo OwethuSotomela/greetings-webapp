@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
     res.render('index')
 })
 
-app.post('/action', function (req, res) {
+app.post('/greetings', function (req, res) {
     let hello = req.body.itemType;
     let string = req.body.fname;
     if(hello == undefined && string == ""){
