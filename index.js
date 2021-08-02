@@ -23,11 +23,6 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.get('/the-route', function (req, res) {
-    req.flash('info', 'Flash Message Added');
-    res.redirect('/', { noName: greeting.getMessage(messages.info) });
-});
-
 app.get('/', function (req, res) {
     res.render('index')
 })
