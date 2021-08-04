@@ -36,7 +36,7 @@ const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex12
 const pool = new Pool({
     connectionString: connectionString,
     ssl : {
-        rejectUnauthorized: useSSL
+        rejectUnauthorized: false
     }
     
 });
