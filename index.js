@@ -8,6 +8,12 @@ const Greeting = require('./greetings');
 
 const app = express();
 
+app.use(session({
+    secret: "add a secret string here",
+    resave: false,
+    saveUninitialized: true
+}));
+
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,11 +23,7 @@ app.use(flash());
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-app.use(session({
-    secret: "add a secret string here",
-    resave: false,
-    saveUninitialized: true
-}));
+
 
 let useSSL = false;
 let local = process.env.LOCAL || false;
