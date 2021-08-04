@@ -47,21 +47,27 @@ app.get('/', function (req, res) {
     res.render('index')
 })
 
-app.post('/greetings', async function (req, res) {
-    let hello = req.body.itemType;
-    let string = req.body.fname;
-    if(hello == undefined && string == ""){
-        req.flash('info', 'Please enter a valid name and select a language!')
+app.post('/greetings', async function (req, res, next) {
+    
+    try {
+        let hello = req.body.itemType;
+        let string = req.body.fname;
+        if(hello == undefined && string == ""){
+            req.flash('info', 'Please enter a valid name and select a language!')
+        }
+        else if (hello == undefined) {
+            req.flash('info', 'Please select a language!');
+        }else if (string == "") {
+            req.flash('info', 'Please enter a valid name!')
+        } else {
+            greeting.greetMessage(hello, string);
+            await greeting.poolName(string);
+        };
+        res.render('index', { greetMe: greeting.getGreet() });
+    } catch (error) {
+        next(error);
+        
     }
-    else if (hello == undefined) {
-        req.flash('info', 'Please select a language!');
-    }else if (string == "") {
-        req.flash('info', 'Please enter a valid name!')
-    } else {
-        greeting.greetMessage(hello, string);
-        await greeting.poolName(string);
-    };
-    res.render('index', { greetMe: greeting.getGreet() });
 })
 
 app.get("/greeted", (req, res) => {
