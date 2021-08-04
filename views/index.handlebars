@@ -21,14 +21,22 @@
                 <br>
                 <div class="six columns">
                     <h1>Greetings</h1>
-                     {{#if messages.info}}   
+                    {{#if messages.info}}
                     <div class="error">{{messages.info}}</div>
                     <div class="feedback">{{feedback}}</div>
                     {{/if}}
                     <form action="/greetings" method="POST">
                         <div class="front">
                             <input type="text" placeholder="Enter your name" class="fname" name="fname">
-                            <div class="countOne">{{startCount}}</div>
+                            <div class="countOne">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="/greeted">Greeted Users</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                         <br>
                         <label class="">

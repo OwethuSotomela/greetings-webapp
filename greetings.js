@@ -4,6 +4,17 @@ module.exports = function Greeting(local) {
     namesList = local
     var message = "";
     var greetMe = "";
+    var pool = local;
+
+    async function poolName(poolUser) {
+        if (poolUser != '' && /^[a-zA-Z]+$/.test(poolUser)) {
+            var name = poolUser[0].toUpperCase() + poolUser.slice(1).toLowerCase();
+            const sql = await pool.query(`SELECT * FROM Users WHERE userName = $1`, [name]);
+            if (sql.rows.length == 0) {
+                await pool.query(`insert into Users (userName, greetedTimes) values ($1, $2)`, [name, 1]);
+            }
+        }
+    }
 
     function setName(string) {
         if (string != '' && /^[a-zA-Z]+$/.test(string)) {
@@ -41,7 +52,7 @@ module.exports = function Greeting(local) {
     function getGreet() {
         return greetMe;
     }
-    function emptyList(){
+    function emptyList() {
         namesList = [];
     }
     return {
@@ -53,6 +64,7 @@ module.exports = function Greeting(local) {
         greetMessage,
         getGreet,
         emptyList,
+        poolName
     }
 }
 
