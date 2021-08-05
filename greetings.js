@@ -55,6 +55,13 @@ module.exports = function Greeting(local) {
     function emptyList() {
         namesList = [];
     }
+    async function poolTable(){
+        const sqlCount = await pool.query("SELECT COUNT(*) FROM users");
+        return sqlCount.rows[0].count;
+    }
+    function emptyDB() {
+        pool = [];
+    }
     return {
         setName,
         greetCounter,
@@ -64,7 +71,9 @@ module.exports = function Greeting(local) {
         greetMessage,
         getGreet,
         emptyList,
-        poolName
+        poolName,
+        emptyDB,
+        poolTable
     }
 }
 
