@@ -1,19 +1,22 @@
+*{
+    align-items: center;
+    text-align: center;
+}
+
 h1{
     font-family:Georgia, 'Times New Roman', Times, serif;
     align-items: center;
     text-shadow:  2px 2px 5px aqua;
 }
-
-
 section{
     height: 90vh;
     border: 2px solid black;
     border-radius: 20px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     text-align: center;
-    background-position: center center;
+    /* background-position: center center; */
     background-repeat: no-repeat;
     background-attachment: fixed;
     box-shadow: 0 20px 25px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -22,6 +25,11 @@ section{
     background-image:url(../images/26.jpeg);
     background-size:cover;
     background-repeat: no-repeat;
+}
+.row{
+    display: flex;
+    flex-direction: column;
+    width:100%;
 }
 button{    
     display: inline;
@@ -38,6 +46,7 @@ button{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin-top: 2%;
 }
   a:visited {
     color: green;
@@ -56,17 +65,19 @@ ul {
     text-shadow:  2px 2px 5px aqua;
 }
 .out{
+    width: 50%;
     border: black 3px solid;
     border-radius: 10px;
+    font-size: 25px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    align-items: center;
+    font-weight: bold;
 }
 .fname{
-    width: 600px;
+    height: 20px;
+    width: 400px;
     text-align: center;
-}
-.front{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    font-size: 20px;
 }
 .error{
     display: flex;
@@ -77,10 +88,11 @@ ul {
     padding-left: 50px;
 }
 .countHere{
-    padding-right: 50px;
+    font-size: 30px;
 }
 .error{
     color: red;
+    font-size: 20px;
     font-weight: 500;
     margin-bottom: 3%;
 }

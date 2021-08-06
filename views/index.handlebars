@@ -1,80 +1,55 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
+<section id="inner-section">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greet-App</title>
-    <link rel="stylesheet" href="./css/greet.css">
-</head>
-
-<body>
-
-    <header>
-    </header>
-
-    <main> --}}
-        <section id="inner-section">
-
-            <div class="row">
-                <br>
-                <div class="six columns">
-                    <h1>Greetings</h1>
-                    {{#if messages.info}}
-                    <div class="error">{{messages.info}}</div>
-                    <div class="feedback">{{feedback}}</div>
-                    {{/if}}
-                    <form action="/greetings" method="POST">
-                        <div class="front">
-                            <input type="text" placeholder="Enter your name" class="fname" name="fname">
-                            <div class="countOne">
-                                <span class="countHere">{{greetedTimes}}</span>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <a href="/greeted">Greeted Users</a>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <br>
-                        <label class="">
-                            <input type="radio" name="itemType" class="itemTypeRadio" value="isiZulu">
-                            <span class="label-body">Zulu</span>
-                        </label>
-                        <label class="">
-                            <input type="radio" name="itemType" class="itemTypeRadio" value="English">
-                            <span class="label-body">English</span>
-                        </label>
-                        <label class="">
-                            <input type="radio" name="itemType" class="itemTypeRadio" value="Portuguese">
-                            <span class="label-body">Portuguese</span>
-                        </label>
+    <div class="row">
+        <br>
+        <div class="helloApp">
+            <h1>Greetings</h1>
+            {{#if messages.info}}
+            <div class="error">{{messages.info}}</div>
+            <div class="feedback">{{feedback}}</div>
+            {{/if}}
+            <form action="/greetings" method="POST">
+                <div class="front">
+                    <input type="text" placeholder="Enter your name" class="fname" name="fname">
+                    <label class="countHere">{{greetedTimes}}</label>
+                    {{!-- <span class="countHere">{{greetedTimes}}</span> --}}
                 </div>
                 <br>
-                <div class="buttons">
-                    <button class="greetbtn" type="submit"><em>Greet Me!</em></button>
-                    </form>
-                    <form action="/reset" method="POST">
-                        <button class="resetBtn" type="submit"><em>Reset!</em></button>
-                    </form>
-                </div>
-                <br>
-                <div class="out">{{greetMe}}</div>
-            </div>
+                <label class="">
+                    <input type="radio" name="itemType" class="itemTypeRadio" value="isiZulu">
+                    <span class="label-body">Zulu</span>
+                </label>
+                <label class="">
+                    <input type="radio" name="itemType" class="itemTypeRadio" value="English">
+                    <span class="label-body">English</span>
+                </label>
+                <label class="">
+                    <input type="radio" name="itemType" class="itemTypeRadio" value="Portuguese">
+                    <span class="label-body">Portuguese</span>
+                </label>
+        </div>
+        <div class="buttons">
+            <button class="greetbtn" type="submit"><em>Greet Me!</em></button>
+            </form>
+            <form action="/reset" method="POST">
+                <button class="resetBtn" type="submit"><em>Reset!</em></button>
+            </form>
+        </div>
+        <br>
+        <div class="out">
+            <div>{{greetMe}}</div>
+        </div>
+        <br>
+        <div style="width: 50%">
+            <table style="background-color: silver;">
+                <tr>
+                    <td>
+                        <a href="/greeted">Greeted Users</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
-        </section>
-    {{!-- </main>
+    </div>
 
-    <footer>
-    </footer> --}}
-
-    {{!--
-    <script src="./js/greet.widget.js"></script>
-    <script src="./js/greet.js" charset="utf-8"></script> --}}
-
-{{!-- </body> --}}
-
-{{!-- </html> --}}
+</section>

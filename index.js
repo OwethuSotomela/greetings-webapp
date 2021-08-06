@@ -82,8 +82,9 @@ app.get('/counter/:userName', async function(req, res){
     res.render("counter", { name: await greeting.getUserName(name) });
 })
 
-app.post('/reset', function (req, res) {
-    greeting.emptyList();
+app.post('/reset',async function (req, res) {
+    req.flash('info', 'Database deleted successfully');
+    await greeting.emptyDB();
     res.redirect('/');
 })
 
