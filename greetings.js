@@ -12,6 +12,8 @@ module.exports = function Greeting(local) {
             const sql = await pool.query(`SELECT * FROM Users WHERE userName = $1`, [name]);
             if (sql.rows.length == 0) {
                 await pool.query(`insert into Users (userName, greetedTimes) values ($1, $2)`, [name, 1]);
+            } else {
+                await pool.query(`UPDATE Users SET greetedTimes = greetedTimes + 1 WHERE userName = $1`, [name])
             }
         }
     }

@@ -1,8 +1,6 @@
 <div class="entry">
-
-
     {{#each name}}
-        <h1>Hello, {{username}} has been greeted {{greetedtimes}} times</h1>
+    <h1>Hello, {{username}} has been greeted {{greetedtimes}} time</h1>
     {{/each}}
     <table>
         <tr>
@@ -16,4 +14,15 @@
         </tr>
         {{/each}}
     </table>
+    <br>
+
+    <div class="buttons">
+        <form action="/greeted" method="GET">
+            <button class="BackBtn" type="submit"><em>Back</em></button>
+        </form>
+        <form action="/" method="GET">
+            <button class="BackBtn" type="submit"><em>Home</em></button>
+        </form>
+    </div>
+
 </div>
