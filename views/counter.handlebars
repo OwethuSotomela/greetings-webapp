@@ -1,3 +1,19 @@
 <div class="entry">
 
+
+    {{#each name}}
+        <h1>Hello, {{username}} has been greeted {{greetedtimes}} times</h1>
+    {{/each}}
+    <table>
+        <tr>
+            <th>Users</th>
+            <th>Greeted Times</th>
+        </tr>
+        {{#each name}}
+        <tr>
+            <td>{{username}}</td>
+            <td>{{greetedtimes}}</td>
+        </tr>
+        {{/each}}
+    </table>
 </div>

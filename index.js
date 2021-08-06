@@ -73,23 +73,13 @@ app.post('/greetings', async function (req, res, next) {
     }
 })
 
-app.get("/greeted", (req, res) => {
-    const sql = "SELECT * FROM Users ORDER BY username"
-    pool.query(sql, [], (err, result) => {
-        if (err) {
-            return console.error(err.message);
-        }
-        res.render("greeted", { model: result.rows });
-        console.log(result.rows);
-    });
+app.get("/greeted", async (req, res) => {
+    res.render("greeted", { model: await greeting.greeted() });
 });
 
-app.get('/counter/userName', function(req, res){
-    const sqlCount = pool.query(`SELECT COUNT * FROM users WHERE greetedTimes > 0;`);
-    if(result.rows !== ''){
-        return sqlCount;
-    }
-    res.send('index', {greetedTimes: greeting.poolTable()});
+app.get('/counter/:userName', async function(req, res){
+    var name = req.params.userName;
+    res.render("counter", { name: await greeting.getUserName(name) });
 })
 
 app.post('/reset', function (req, res) {
@@ -97,8 +87,9 @@ app.post('/reset', function (req, res) {
     res.redirect('/');
 })
 
-app.post('/clear', function (req, res) {
-    greeting.emptyDB();
+app.post('/clear', async function (req, res) {
+    req.flash('info', 'Database deleted successfully');
+    await greeting.emptyDB();
     res.render('greeted');
 })
 

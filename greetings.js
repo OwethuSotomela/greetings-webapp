@@ -53,17 +53,29 @@ module.exports = function Greeting(local) {
         return greetMe;
     }
     function emptyList() {
-        namesList = [];
+        emptyListnamesList = [];
     }
     async function poolTable(){
         const sqlCount = await pool.query("SELECT COUNT(*) FROM users");
         return sqlCount.rows[0].count;
     }
-    function emptyDB() {
-        pool = [];
+
+    async function greeted(){
+        const sqlCount = await pool.query("SELECT * FROM users ORDER BY userName");
+        return sqlCount.rows;
+    }
+
+    async function emptyDB() {
+        await pool.query("DELETE FROM users")
+    }
+    async function getUserName(name){
+        const sqldb = await pool.query("SELECT * FROM users WHERE userName = $1", [name])
+        return sqldb.rows;
     }
     return {
+        getUserName,
         setName,
+        greeted,
         greetCounter,
         getNames,
         firstL,
