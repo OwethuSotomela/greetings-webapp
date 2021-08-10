@@ -1,6 +1,5 @@
 const assert = require("assert");
 const Greeting = require("../greetings");
-// const CategoryService = require('../services/category-service');
 const { Pool } = require("pg");
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/users';
@@ -10,8 +9,8 @@ const pool = new Pool({
     ssl: {
         rejectUnauthorized: false
     }
-
 });
+
 const greeting = Greeting(pool);
 
 describe('Greeting', function () {
