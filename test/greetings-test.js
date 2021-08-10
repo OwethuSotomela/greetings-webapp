@@ -1,5 +1,18 @@
 const assert = require("assert");
 const Greeting = require("../greetings");
+// const CategoryService = require('../services/category-service');
+const { Pool } = require("pg");
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://codex:codex123@localhost:5432/users';
+
+const pool = new Pool({
+    connectionString: connectionString,
+    ssl: {
+        rejectUnauthorized: false
+    }
+
+});
+const greeting = Greeting(pool);
 
 describe('Greeting', function () {
     it('Should greet the name entered in isiZulu', function () {
@@ -11,6 +24,7 @@ describe('Greeting', function () {
 
         assert.equal('Sawubona, Owethu', myHello.firstL(string, langauge))
     })
+
     it('Should return message "Name already greeted"', function () {
         let myHello = Greeting([])
         var string = "Owethu"
@@ -22,6 +36,7 @@ describe('Greeting', function () {
         assert.equal('Sawubona, Owethu', myHello.firstL(string, langauge))
         assert.equal('Name already greeted!', myHello.getMessage())
     })
+
     it('Should return the first character of the name entered in uppercase and the rest in lowercase', function () {
         let myHello = Greeting([])
         var string = "Ohworthy"
@@ -30,8 +45,8 @@ describe('Greeting', function () {
         myHello.setName(string)
 
         assert.equal('Sawubona, Ohworthy', myHello.firstL(string, langauge))
-
     })
+
     it('Should return the greeting in English', function () {
         let myHello = Greeting([])
         var string = "Worthy"
@@ -42,6 +57,7 @@ describe('Greeting', function () {
 
         assert.equal('Hi, Worthy', myHello.firstL(string, langauge))
     })
+
     it('Should return the string of names entered', function () {
         let myHello = Greeting([])
         var string = "Worthy"
@@ -66,6 +82,7 @@ describe('Greeting', function () {
 
         assert.deepEqual([string, string1, string2, string3, string4, string5, string6, string7, string8], myHello.getNames())
     })
+
     it('Should return the number of  times the names are entered', function () {
         let myHello = Greeting([])
         var string = "Worthy"
@@ -93,5 +110,60 @@ describe('Greeting', function () {
         myHello.setName(string10)
 
         assert.deepEqual(11, myHello.greetCounter())
+    })
+})
+
+describe('Deleting Database', async function () {
+    it('should delete from users database', async function () {
+        await greeting.emptyDB();
+        assert.equal(0, await greeting.poolTable())
+    })
+})
+
+describe('Get UserName', async function () {
+    it('Should return the greeted userName', async function () {
+        await greeting.poolName('Worthy');
+        var userName = await greeting.getUserName('Worthy')
+        assert.equal('Worthy', userName[0].username)
+        await greeting.emptyDB();
+    })
+})
+describe('Count Greeted Users', async function () {
+    it('Should count the names of all greeted users', async function () {
+        await greeting.poolName('Worthy');
+        await greeting.poolName('Owethu');
+        await greeting.poolName('Ethu');
+        await greeting.poolName('Oz');
+        await greeting.poolName('Ohworthy');
+
+        await greeting.getUserName('Worthy');
+        await greeting.getUserName('Owethu');
+        await greeting.getUserName('Ethu');
+        await greeting.getUserName('Oz');
+        await greeting.getUserName('Ohworthy');
+
+        assert.equal(5, await greeting.poolTable());
+        await greeting.emptyDB();
+    })
+})
+describe('Greeted users list', async function() {
+    it('Should display the list of all greeted users', async function() {
+        await greeting.poolName('Worthy');
+        await greeting.poolName('Owethu');
+        await greeting.poolName('Ethu');
+        await greeting.poolName('Oz');
+        await greeting.poolName('Ohworthy');
+
+       var userName1 = await greeting.getUserName('Worthy');
+       var userName2 = await greeting.getUserName('Owethu');
+       var userName3 = await greeting.getUserName('Ethu');
+       var userName4 = await greeting.getUserName('Oz');
+       var userName5 = await greeting.getUserName('Ohworthy');
+
+        assert.equal('Worthy', userName1[0].username)
+        assert.equal('Owethu', userName2[0].username)
+        assert.equal('Ethu', userName3[0].username)
+        assert.equal('Oz', userName4[0].username)
+        assert.equal('Ohworthy', userName5[0].username)
     })
 })
